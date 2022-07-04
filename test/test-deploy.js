@@ -33,5 +33,10 @@ describe("Simple Storage", function () {
 
     const currentValue = await SimpleStorage.retrieve()
     assert.equal(currentValue.toString(), expectedValue)
-  } )
+  })
+
+  it('add a person and favorite number', async () => {
+    const addPerson = await SimpleStorage.addPerson('Grace', 7)
+
+  })
 });
