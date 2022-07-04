@@ -2,15 +2,15 @@ const { ethers } = require("hardhat");
 const { assert, expect } = require("chai");
 
 describe("Simple Storage", function () {
-  let simpleStorage, simpleStorageFactory
+  let SimpleStorage, SimpleStorageFactory
   
   beforeEach(async () => {
-    simpleStorageFactory = await ethers.getContractFactory("simpleStorage")
-    simpleStorage = await simpleStorageFactory.deploy()
+    SimpleStorageFactory = await ethers.getContractFactory("SimpleStorage")
+    SimpleStorage = await SimpleStorageFactory.deploy()
   })
 
   it('start with a current value of 0', async () => {
-    const currentValue = await simpleStorage.retrieve()
+    const currentValue = await SimpleStorage.retrieve()
     const retrievedValue = 0
     assert.equal(currentValue.toString(), retrievedValue)
   })
@@ -18,9 +18,9 @@ describe("Simple Storage", function () {
   it('updates when we call store', async () => {
     // the way I wrote my code
     /*
-    const store = await simpleStorage.store(8)
+    const store = await SimpleStorage.store(8)
     const storedValue = await store.wait(1)
-    const retrievedValue = await simpleStorage.retrieve()
+    const retrievedValue = await SimpleStorage.retrieve()
     const updatedValue = 8
 
     assert.equal(retrievedValue.toString(), updatedValue)
@@ -28,10 +28,10 @@ describe("Simple Storage", function () {
 
     // How Patrick wrote his code 
     const expectedValue = 7
-    const transactionResponse = await simpleStorage.store(expectedValue)
+    const transactionResponse = await SimpleStorage.store(expectedValue)
     await transactionResponse.wait(1)
 
-    const currentValue = await simpleStorage.retrieve()
+    const currentValue = await SimpleStorage.retrieve()
     assert.equal(currentValue.toString(), expectedValue)
   } )
 });
